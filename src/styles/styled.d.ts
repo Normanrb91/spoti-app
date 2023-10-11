@@ -9,6 +9,7 @@ declare module 'styled-components' {
             primary: string,
             secondary: string
             tertiary: string
+            background: string
           },
           fontWeights: {
             thin: number,
