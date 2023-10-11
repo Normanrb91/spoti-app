@@ -8,6 +8,7 @@ export const myTheme: DefaultTheme = {
     primary: '#45505b',
     secondary: '#0563bb',
     tertiary: '#fb8b62',
+    background: '#09090B'
   },
   fontWeights: {
     thin: 100,
