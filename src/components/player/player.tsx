@@ -1,5 +1,10 @@
+import { Sidebar } from '@/components'
 import { Container } from './styles'
 
 export const Player = () => {
-  return <Container>player</Container>
+  return (
+    <Container>
+      <Sidebar />
+    </Container>
+  )
 }

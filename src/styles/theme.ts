@@ -7,8 +7,12 @@ export const myTheme: DefaultTheme = {
   colors: {
     primary: '#45505b',
     secondary: '#0563bb',
-    tertiary: '#fb8b62',
-    background: '#09090B'
+    tertiary: '#18181B',
+    background: '#09090B',
+    textOff: '#A1A1AA',
+    textOn: '#FFFFFF',
+    cardOn: '#71717A1A',
+    cardFocus: '#71717A80'
   },
   fontWeights: {
     thin: 100,
@@ -20,6 +24,20 @@ export const myTheme: DefaultTheme = {
     bold: 700,
     extrabold: 800,
     black: 900
+  },
+  fontSizes: {
+    12: '0.75rem',
+    14: '0.875rem',
+    16: '1rem',
+    18: '1.125rem',
+    20: '1.25rem',
+    24: '1.5rem',
+    28: '1.75rem',
+    32: '2rem',
+    36: '2.25rem',
+    44: '2.75rem',
+    52: '3.25rem',
+    56: '3.5rem',
   },
   breakpoints: {
     xs: '520px',

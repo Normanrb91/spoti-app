@@ -10,6 +10,10 @@ declare module 'styled-components' {
             secondary: string
             tertiary: string
             background: string
+            textOff: string,
+            textOn: string,
+            cardOn: string
+            cardFocus: string
           },
           fontWeights: {
             thin: number,
@@ -21,6 +25,20 @@ declare module 'styled-components' {
             bold: number,
             extrabold: number,
             black: number
+          },
+          fontSizes: {
+            12: string,
+            14: string,
+            16: string,
+            18: string,
+            20: string,
+            24: string,
+            28: string,
+            32: string,
+            36: string,
+            44: string,
+            52: string,
+            56: string,
           },
           breakpoints: {
             xs: string
