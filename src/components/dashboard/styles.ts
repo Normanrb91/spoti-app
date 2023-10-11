@@ -5,5 +5,5 @@ export const Container = styled.div`
     flex: 1 1 0%;
     border-radius: 8px;
     overflow-y: auto;
-    background-color: ${({theme}) => theme.colors.tertiary };
+    background-color: white;
 `

@@ -1,6 +1,7 @@
+import { NavLink as NavLinkRouter } from 'react-router-dom'
 import styled from "styled-components"
 
-export const Link = styled.a`
+export const Link = styled(NavLinkRouter)`
     display: flex;
     align-items: center;
     gap: 16px;

@@ -9,7 +9,7 @@ type SidebarCardProps = {
 
 export const SidebarCard = ({ img, path, title, subtitle }: SidebarCardProps) => {
   return (
-    <Link href={path}>
+    <Link to={`/${path}`}>
       <ImagenContainer>
         <img src={img} alt={title} />
       </ImagenContainer>

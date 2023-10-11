@@ -6,9 +6,9 @@ type SidebarItemProps = PropsWithChildren<{
   path?: string
 }>
 
-export const SidebarItem = ({ icon, path, children }: SidebarItemProps) => {
+export const SidebarItem = ({ icon, path = 'home', children }: SidebarItemProps) => {
   return (
-    <Link href={path}>
+    <Link to={`/${path}`}>
       {icon}
       {children}
     </Link>
