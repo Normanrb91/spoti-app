@@ -1,7 +1,8 @@
 import { NavLink as NavLinkRouter } from 'react-router-dom'
-import styled from "styled-components"
+import styled, {css} from "styled-components"
 
-export const Link = styled(NavLinkRouter)`
+
+const navStyles = css`
     display: flex;
     align-items: center;
     gap: 16px;
@@ -15,4 +16,12 @@ export const Link = styled(NavLinkRouter)`
     &:hover{
         color: ${({theme}) => theme.colors.textOn};
     }
+`
+
+export const Link = styled(NavLinkRouter)`
+    ${navStyles}
+`
+
+export const LinkOff = styled.p`
+    ${navStyles}
 `

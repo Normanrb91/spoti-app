@@ -13,6 +13,7 @@ export const Routes = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/playlist/:id" element={<PlayList />} />
           <Route path="/" element={<Navigate to={'/home'} />} />
+          <Route path="/*" element={<Navigate to={'/home'} />} />
         </Route>
       </BrowserRoutes>
     </BrowserRouter>

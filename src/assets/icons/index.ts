@@ -1,0 +1,7 @@
+export {HamburguerIcon} from './Hamburguer'
+export {HomeIcon} from './Home'
+export {LibraryIcon} from './Library'
+export {PauseIcon} from './Pause'
+export {PlayIcon} from './Play'
+export {SearchIcon} from './Search'
+export {TimeIcon} from './Time'

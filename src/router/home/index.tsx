@@ -1,3 +1,5 @@
+import { Home as HomeRouter } from '@/components'
+
 export const Home = () => {
-  return <div>Home</div>
+  return <HomeRouter />
 }

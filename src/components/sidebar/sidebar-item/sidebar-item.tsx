@@ -1,16 +1,26 @@
 import { type PropsWithChildren } from 'react'
-import { Link } from './styles'
+import { Link, LinkOff } from './styles'
 
 type SidebarItemProps = PropsWithChildren<{
+  closedSidebar?: () => void
   icon: JSX.Element
   path?: string
 }>
 
-export const SidebarItem = ({ icon, path = 'home', children }: SidebarItemProps) => {
+export const SidebarItem = ({ icon, path, closedSidebar = () => {}, children }: SidebarItemProps) => {
   return (
-    <Link to={`/${path}`}>
-      {icon}
-      {children}
-    </Link>
+    <>
+      {path ? (
+        <Link to={`/${path}`} onClick={() => closedSidebar()}>
+          {icon}
+          {children}
+        </Link>
+      ) : (
+        <LinkOff>
+          {icon}
+          {children}
+        </LinkOff>
+      )}
+    </>
   )
 }
