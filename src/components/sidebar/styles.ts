@@ -3,9 +3,22 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    flex: 1 1 0%;
+    height: 100%;
     row-gap: 8px;
-    max-width: 350px;
+    width: 350px;
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all .5s ease;
+        z-index: 3;
+        background-color: ${({theme}) => theme.colors.tertiary };
+
+        &.inactive {
+            transform: translate(-350px);
+        }
+    }
 `
 
 export const Menu = styled.div`

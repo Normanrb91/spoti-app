@@ -1,43 +1,48 @@
 import { SidebarItem } from './sidebar-item'
-import { HomeOutlined, Search, LibraryMusicOutlined } from '@mui/icons-material/'
-import { CardContainer, Container, Library, Menu } from './styles'
 import { SidebarCard } from './sidebar-card'
+import { HomeIcon, LibraryIcon, SearchIcon } from '@/assets'
+import { CardContainer, Container, Library, Menu } from './styles'
 
-export const Sidebar = () => {
+type SidebarProps = {
+  closedSidebar: () => void
+  isActive: boolean
+}
+
+export const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
   return (
-    <Container>
+    <Container className={!isActive ? 'inactive' : undefined}>
       <Menu>
-        <SidebarItem icon={<HomeOutlined sx={{ fontSize: 28 }} />} path="home">
+        <SidebarItem closedSidebar={closedSidebar} icon={<HomeIcon />} path="home">
           Home
         </SidebarItem>
-        <SidebarItem icon={<Search sx={{ fontSize: 28 }} />} path="search">
+        <SidebarItem closedSidebar={closedSidebar} icon={<SearchIcon />} path="search">
           Search
         </SidebarItem>
       </Menu>
       <Library>
-        <SidebarItem icon={<LibraryMusicOutlined sx={{ fontSize: 28 }} />}>Your library</SidebarItem>
+        <SidebarItem icon={<LibraryIcon />}>Your library</SidebarItem>
         <CardContainer>
           <SidebarCard
             title="Electronic party asda s asd as dsdd a asd asd"
-            path="http://localhost"
+            path="playlist/1"
             subtitle="Avicii, Alok"
             img="https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg"
           />
           <SidebarCard
             title="Electronic party"
-            path="http://localhost"
+            path="playlist/2"
             subtitle="Avicii, Alok"
             img="https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg"
           />
           <SidebarCard
             title="Electronic party"
-            path="http://localhost"
+            path="playlist/3"
             subtitle="Avicii, Alok"
             img="https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg"
           />
           <SidebarCard
             title="Electronic party"
-            path="http://localhost"
+            path="playlist/4"
             subtitle="Avicii, Alok"
             img="https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg"
           />

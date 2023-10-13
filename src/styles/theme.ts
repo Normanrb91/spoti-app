@@ -1,4 +1,5 @@
 import { DefaultTheme } from 'styled-components';
+import { CardBody } from '../components/home/card-body/card-body';
 
 export const myTheme: DefaultTheme = {
   fonts: {
@@ -6,13 +7,16 @@ export const myTheme: DefaultTheme = {
   },
   colors: {
     primary: '#45505b',
-    secondary: '#0563bb',
+    secondary: '#22C55E',
     tertiary: '#18181B',
     background: '#09090B',
     textOff: '#A1A1AA',
     textOn: '#FFFFFF',
     cardOn: '#71717A1A',
-    cardFocus: '#71717A80'
+    cardFocus: '#71717A80',
+    cardHeader: '#71717A4D',
+    cardBody: '#71717A0D',
+    CardBodyHover: '#71717A33'
   },
   fontWeights: {
     thin: 100,
@@ -40,9 +44,9 @@ export const myTheme: DefaultTheme = {
     56: '3.5rem',
   },
   breakpoints: {
-    xs: '520px',
-    sm: '900px',
-    md: '1200px',
+    xs: '640px',
+    sm: '1024px',
+    md: '1280px',
     lg: '1441px',
     xl: '1920px'
   },

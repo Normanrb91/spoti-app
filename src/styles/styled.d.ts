@@ -14,6 +14,9 @@ declare module 'styled-components' {
             textOn: string,
             cardOn: string
             cardFocus: string
+            cardHeader: string
+            cardBody: string
+            CardBodyHover: string
           },
           fontWeights: {
             thin: number,
