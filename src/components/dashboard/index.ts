@@ -1,1 +1,1 @@
-export { Dashborad }  from './dashborad';
+export { Dashboard }  from './dashborad';

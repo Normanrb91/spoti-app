@@ -10,7 +10,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 24px 24px 0px 24px;
-    background: linear-gradient( to bottom, ${({theme}) => theme.colors.secondary}7A,  ${({theme}) => theme.colors.tertiary} 60%) ;
+    background: linear-gradient( to bottom, ${({theme}) => theme.colors.secondary}9F,  ${({theme}) => theme.colors.tertiary} 80%) ;
 
     > h1 {
         font-weight: ${({theme}) => theme.fontWeights.bold};
@@ -39,7 +39,7 @@ export const HeaderWraper = styled.div`
 export const BodyContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 24px 24px 24px 24px;
+    padding: 24px;
 
     > h2 {
         font-weight: ${({theme}) => theme.fontWeights.bold};
@@ -54,4 +54,3 @@ export const BodyWraper = styled.div`
     gap: 16px;
     margin-top: 24px;    
 `
-

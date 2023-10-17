@@ -1,12 +1,24 @@
+import { type PropsWithChildren } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { myTheme, GlobalStyles } from '@/styles'
 import { Routes } from '@/router'
+import { AuthProvider, PlayListProvider } from '@/context'
+import { myTheme, GlobalStyles } from '@/styles'
+
+function AppState({ children }: PropsWithChildren) {
+  return (
+    <AuthProvider>
+      <PlayListProvider>{children}</PlayListProvider>
+    </AuthProvider>
+  )
+}
 
 function App() {
   return (
     <ThemeProvider theme={myTheme}>
-      <GlobalStyles />
-      <Routes />
+      <AppState>
+        <GlobalStyles />
+        <Routes />
+      </AppState>
     </ThemeProvider>
   )
 }

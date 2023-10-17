@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components';
-import { CardBody } from '../components/home/card-body/card-body';
+
 
 export const myTheme: DefaultTheme = {
   fonts: {
@@ -7,7 +7,7 @@ export const myTheme: DefaultTheme = {
   },
   colors: {
     primary: '#45505b',
-    secondary: '#22C55E',
+    secondary: '#24B960',
     tertiary: '#18181B',
     background: '#09090B',
     textOff: '#A1A1AA',
@@ -42,6 +42,7 @@ export const myTheme: DefaultTheme = {
     44: '2.75rem',
     52: '3.25rem',
     56: '3.5rem',
+    64: '4rem',
   },
   breakpoints: {
     xs: '640px',
