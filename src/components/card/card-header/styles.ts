@@ -1,6 +1,7 @@
 import { NavLink as NavLinkRouter } from 'react-router-dom'
 import styled from "styled-components";
 
+
 export const Link = styled(NavLinkRouter)`
     position: relative;
     display: flex;
@@ -45,6 +46,7 @@ export const IconContainer = styled.div`
     opacity: 0;
     transition-duration: .3s;
 
+
     >span {
         display: flex;
         align-items: center;
@@ -54,6 +56,7 @@ export const IconContainer = styled.div`
         background-color: ${({theme}) => theme.colors.secondary};
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
         border-radius: 99999px;
+        
 
         &:hover{
             transform: scale(1.05)

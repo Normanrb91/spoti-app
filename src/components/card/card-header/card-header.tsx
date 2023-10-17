@@ -1,17 +1,15 @@
 import { PlayIcon } from '@/assets'
+import { PlayList } from '@/interfaces'
 import { IconContainer, ImagenContainer, Link, TextContainer } from './styles'
 
-export const CardHeader = () => {
+export const CardHeader = ({ id, images, name }: PlayList) => {
   return (
-    <Link to="">
+    <Link to={`/playlist/${id}`}>
       <ImagenContainer>
-        <img
-          src="https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg"
-          alt=""
-        />
+        <img src={images[0].url} alt={name} />
       </ImagenContainer>
       <TextContainer>
-        <h4>Electrinic Party </h4>
+        <h4>{name}</h4>
       </TextContainer>
       <IconContainer>
         <span>

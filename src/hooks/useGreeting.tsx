@@ -6,12 +6,13 @@ export const useGreeting = (initalState = '') => {
   useEffect(() => {
     const currentTime = new Date()
     const currentHour = currentTime.getHours()
+
     if (currentHour >= 5 && currentHour < 12) {
-      setGreeting('Good morning')
-    } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting('Good afternoon')
+      setGreeting('Buenos dias')
+    } else if (currentHour >= 12 && currentHour < 20) {
+      setGreeting('Buenas tardes')
     } else {
-      setGreeting('Good night')
+      setGreeting('Buenas noches')
     }
   }, [setGreeting])
 
