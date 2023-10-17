@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react'
 import { PlayListContext } from '@/context'
 import {
+  Background,
   BodyContainer,
   BodyWraper,
   Container,
@@ -58,6 +59,9 @@ export const PlayList = () => {
           <Table />
         </BodyWraper>
       </BodyContainer>
+      <Background>
+        <img src={activePlayList?.images[0].url} />
+      </Background>
     </Container>
   )
 }

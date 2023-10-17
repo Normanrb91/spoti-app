@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
+    z-index: 1;
 `
 
 export const IconBackContainer = styled.div`
@@ -26,7 +29,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 24px 24px 0px 24px;
-    background: ${({theme}) => theme.colors.secondary}9F;
+    background: ${({theme}) => theme.colors.secondary}9C;
 `
 
 export const HeaderWraper = styled.div`
@@ -95,17 +98,6 @@ export const TextContainer = styled.div`
     }
 `
 
-export const BodyContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 24px;
-    background: linear-gradient( to bottom, ${({theme}) => theme.colors.secondary}7A,  ${({theme}) => theme.colors.tertiary} 60%) ;
-
-    @media (max-width: 750px) {
-        padding: 16px;
-    }
-`
-
 export const IconPlayContainer = styled.div`
     display: flex;
     cursor: pointer;
@@ -126,10 +118,40 @@ export const IconPlayContainer = styled.div`
     }
 `
 
-export const BodyWraper = styled.div`
+export const BodyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     padding: 24px;
+    background: linear-gradient( to bottom, ${({theme}) => theme.colors.secondary}57,  ${({theme}) => theme.colors.tertiary} 30%) ;
+
+    @media (max-width: 750px) {
+        padding: 16px;
+    }
+`
+
+export const BodyWraper = styled.div`
+    padding: 24px 24px 0px 24px;
 
     @media (max-width: 750px) {
         padding: 16px 0; 
+    }
+`
+
+export const Background = styled.div`
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    height: 100vh;
+    //background-image: linear-gradient(to bottom, #21c872, rgb(255 255 255 / 0));
+
+    >img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.2;
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        filter: blur(12px);
     }
 `

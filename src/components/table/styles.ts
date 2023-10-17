@@ -33,6 +33,11 @@ export const Row = styled.div`
     display: grid;
     grid-template-columns: 0.3fr 2fr 2fr 0.4fr;
     color: ${({theme}) => theme.colors.textOn};
+    cursor: pointer;
+
+    &:hover{
+        background-color: ${({theme}) => theme.colors.CardBodyHover};
+    }
 
     @media (max-width: 1350px) {
         grid-template-columns: 0.3fr 1.8fr 1.8fr 0.6fr;
