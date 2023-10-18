@@ -25,11 +25,11 @@ export const IconBackContainer = styled.div`
     }
 `
 
-export const HeaderContainer = styled.div<{ $bgColor?: string }>`
+export const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 24px 24px 0px 24px;
-    background: ${(props) => props.$bgColor}9C;
+    background: ${({theme}) => theme.colors.secondary}9C;
 `
 
 export const HeaderWraper = styled.div`
@@ -118,11 +118,11 @@ export const IconPlayContainer = styled.div`
     }
 `
 
-export const BodyContainer = styled.div<{ $bgColor?: string }>`
+export const BodyContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 24px;
-    background: linear-gradient( to bottom, ${(props) => props.$bgColor}57,  ${({theme}) => theme.colors.tertiary} 30%) ;
+    background: linear-gradient( to bottom, ${({theme}) => theme.colors.secondary}57,  ${({theme}) => theme.colors.tertiary} 30%) ;
 
     @media (max-width: 750px) {
         padding: 16px;

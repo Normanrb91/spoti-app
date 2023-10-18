@@ -1,28 +1,41 @@
 import { useContext } from 'react'
 import { useGreeting } from '@/hooks'
 import { CardBody, CardHeader } from '@/components'
-import { PlayListContext } from '@/context'
-import { BodyContainer, BodyWraper, Container, HeaderContainer, HeaderWraper } from './styles'
+import { GradientContext, PlayListContext } from '@/context'
+import {
+  BackGground,
+  BodyContainer,
+  BodyWraper,
+  Container,
+  HeaderContainer,
+  HeaderWraper,
+  LinearGradient
+} from './styles'
 
 export const Home = () => {
-  const { greeting } = useGreeting()
   const { userPlayList, featuredPlaylist } = useContext(PlayListContext)
+  const { color } = useContext(GradientContext)
+  const { greeting } = useGreeting()
 
   return (
     <Container>
-      <HeaderContainer>
-        <h1>{greeting}</h1>
-        <HeaderWraper>
-          {userPlayList.map(playlist => (
-            <CardHeader {...playlist} key={playlist.id} />
-          ))}
-        </HeaderWraper>
-      </HeaderContainer>
+      <BackGground $backColor={color}>
+        <HeaderContainer>
+          <h1>{greeting}</h1>
+          <HeaderWraper>
+            {userPlayList.map(playlist => (
+              <CardHeader key={playlist.id} {...playlist} />
+            ))}
+          </HeaderWraper>
+        </HeaderContainer>
+        <LinearGradient />
+      </BackGground>
+
       <BodyContainer>
         <h2>Listas destacadas</h2>
         <BodyWraper>
           {featuredPlaylist.map(playlist => (
-            <CardBody {...playlist} key={playlist.id} />
+            <CardBody key={playlist.id} {...playlist} />
           ))}
         </BodyWraper>
       </BodyContainer>

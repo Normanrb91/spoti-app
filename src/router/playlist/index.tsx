@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react'
-import { PlayListContext } from '@/context'
+import { GradientContext, PlayListContext } from '@/context'
 import {
   Background,
   BodyContainer,
@@ -19,7 +19,7 @@ import { Table } from '@/components'
 export const PlayList = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-
+  const { color } = useContext(GradientContext)
   const { getPlayListId, activePlayList } = useContext(PlayListContext)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const PlayList = () => {
 
   return (
     <Container>
-      <HeaderContainer>
+      <HeaderContainer $bgColor={color}>
         <IconBackContainer
           onClick={() => {
             navigate('/home'), { replace: true }
@@ -49,7 +49,7 @@ export const PlayList = () => {
           </TextContainer>
         </HeaderWraper>
       </HeaderContainer>
-      <BodyContainer>
+      <BodyContainer $bgColor={color}>
         <IconPlayContainer>
           <span>
             <PlayIcon width={40} height={40} />

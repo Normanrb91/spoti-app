@@ -1,13 +1,15 @@
 import { type PropsWithChildren } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Routes } from '@/router'
-import { AuthProvider, PlayListProvider } from '@/context'
+import { AuthProvider, GradientProvider, PlayListProvider } from '@/context'
 import { myTheme, GlobalStyles } from '@/styles'
 
 function AppState({ children }: PropsWithChildren) {
   return (
     <AuthProvider>
-      <PlayListProvider>{children}</PlayListProvider>
+      <GradientProvider>
+        <PlayListProvider>{children}</PlayListProvider>
+      </GradientProvider>
     </AuthProvider>
   )
 }
