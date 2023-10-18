@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useColor } from 'color-thief-react'
 import { PlayListContext } from '@/context'
-import { Table } from '@/components'
+import { Loader, Table } from '@/components'
 import { BackIcon, PlayIcon } from '@/assets'
 import {
   Background,
@@ -31,7 +31,7 @@ export const PlayList = () => {
     getPlayListId(id!)
   }, [id])
 
-  if (activeLoading) return <p>Loading...</p>
+  if (activeLoading) return <Loader />
 
   return (
     <Container>
