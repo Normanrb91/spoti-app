@@ -1,6 +1,6 @@
-import { useContext } from 'react'
-import { CardSidebar, SidebarItem } from '@/components'
+import { memo, useContext } from 'react'
 import { PlayListContext } from '@/context'
+import { CardSidebar, SidebarItem } from '@/components'
 import { HomeIcon, LibraryIcon, SearchIcon } from '@/assets'
 import { CardContainer, Container, Library, Menu } from './styles'
 
@@ -9,21 +9,21 @@ type SidebarProps = {
   isActive: boolean
 }
 
-export const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
+const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
   const { userPlayList } = useContext(PlayListContext)
 
   return (
     <Container className={!isActive ? 'inactive' : undefined}>
       <Menu>
         <SidebarItem closedSidebar={closedSidebar} icon={<HomeIcon />} path="home">
-          Home
+          Inicio
         </SidebarItem>
         <SidebarItem closedSidebar={closedSidebar} icon={<SearchIcon />} path="search">
-          Search
+          Buscar
         </SidebarItem>
       </Menu>
       <Library>
-        <SidebarItem icon={<LibraryIcon />}>Your library</SidebarItem>
+        <SidebarItem icon={<LibraryIcon />}>Tus listas</SidebarItem>
         <CardContainer>
           {userPlayList.map(playlist => (
             <CardSidebar {...playlist} key={playlist.id} />
@@ -33,3 +33,7 @@ export const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
     </Container>
   )
 }
+
+const MemoSidebar = memo(Sidebar)
+
+export { MemoSidebar as Sidebar }

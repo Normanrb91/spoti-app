@@ -1,15 +1,13 @@
-import { type PropsWithChildren, useState, useEffect } from 'react'
-import { GradientContext } from './GradientContext'
+import { type PropsWithChildren, useState, useEffect, useContext } from 'react'
 import { useColor } from 'color-thief-react'
-
-export interface GradientState {
-  color: string
-}
+import { GradientContext } from './GradientContext'
+import { PlayListContext } from '../playlist'
 
 export const GradientProvider = ({ children }: PropsWithChildren) => {
-  const [color, setColor] = useState<GradientState>({ color: '#24B960' })
-  const [image, setimage] = useState('')
+  const [color, setColor] = useState({ color: '' })
+  const [image, setImage] = useState('')
   const [delayHandler, setDelayHandler] = useState<NodeJS.Timeout>()
+  const { userPlayList } = useContext(PlayListContext)
   const { data } = useColor(image, 'hex', { crossOrigin: '10', quality: 10 })
 
   useEffect(() => {
@@ -18,10 +16,16 @@ export const GradientProvider = ({ children }: PropsWithChildren) => {
     }
   }, [data])
 
+  useEffect(() => {
+    if (userPlayList.length > 0) {
+      setImage(userPlayList[0].images[0].url)
+    }
+  }, [userPlayList])
+
   const handleMouseEnter = (imageUrl: string) => {
     setDelayHandler(
       setTimeout(() => {
-        setimage(imageUrl)
+        setImage(imageUrl)
       }, 100)
     )
   }

@@ -1,6 +1,6 @@
 import { type PropsWithChildren, useState, useEffect } from 'react'
-import { AuthContext } from './AuthContext'
 import { login_constants } from '@/libs'
+import { AuthContext } from './AuthContext'
 
 export interface AuthState {
   token: string | null
@@ -9,6 +9,7 @@ export interface AuthState {
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [authState, setAuthState] = useState<AuthState>({ token: null })
   const { redirect_uri } = login_constants
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token')!)
     setAuthState({ token })

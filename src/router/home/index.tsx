@@ -1,7 +1,7 @@
 import { useContext } from 'react'
-import { useGreeting } from '@/hooks'
-import { CardBody, CardHeader } from '@/components'
 import { GradientContext, PlayListContext } from '@/context'
+import { CardBody, CardHeader } from '@/components'
+import { useGreeting } from '@/hooks'
 import {
   BackGground,
   BodyContainer,
@@ -13,9 +13,11 @@ import {
 } from './styles'
 
 export const Home = () => {
-  const { userPlayList, featuredPlaylist } = useContext(PlayListContext)
+  const { userPlayList, featuredPlaylist, loading } = useContext(PlayListContext)
   const { color } = useContext(GradientContext)
   const { greeting } = useGreeting()
+
+  if (loading) return <p>Loading...</p>
 
   return (
     <Container>

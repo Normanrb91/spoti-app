@@ -7,9 +7,9 @@ import { myTheme, GlobalStyles } from '@/styles'
 function AppState({ children }: PropsWithChildren) {
   return (
     <AuthProvider>
-      <GradientProvider>
-        <PlayListProvider>{children}</PlayListProvider>
-      </GradientProvider>
+      <PlayListProvider>
+        <GradientProvider>{children}</GradientProvider>
+      </PlayListProvider>
     </AuthProvider>
   )
 }

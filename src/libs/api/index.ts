@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { BASE_URL } from '../constants';
+import { base_url } from '../constants';
 
-export const spotiApi = axios.create({baseURL: BASE_URL})
+export const spotiApi = axios.create({baseURL: base_url})
 
 spotiApi.interceptors.request.use(config => {
         const token = JSON.parse(localStorage.getItem('token')!)

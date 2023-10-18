@@ -1,5 +1,9 @@
 import { useEffect, useContext } from 'react'
-import { GradientContext, PlayListContext } from '@/context'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useColor } from 'color-thief-react'
+import { PlayListContext } from '@/context'
+import { Table } from '@/components'
+import { BackIcon, PlayIcon } from '@/assets'
 import {
   Background,
   BodyContainer,
@@ -12,26 +16,29 @@ import {
   ImagenContainer,
   TextContainer
 } from './styles'
-import { BackIcon, PlayIcon } from '@/assets'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Table } from '@/components'
 
 export const PlayList = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { color } = useContext(GradientContext)
   const { getPlayListId, activePlayList } = useContext(PlayListContext)
+  const { active, activeLoading } = activePlayList
+  const { data: color } = useColor(active?.images[0].url ?? '', 'hex', {
+    crossOrigin: '10',
+    quality: 10
+  })
 
   useEffect(() => {
     getPlayListId(id!)
   }, [id])
+
+  if (activeLoading) return <p>Loading...</p>
 
   return (
     <Container>
       <HeaderContainer $bgColor={color}>
         <IconBackContainer
           onClick={() => {
-            navigate('/home'), { replace: true }
+            navigate(-1)
           }}
         >
           <span>
@@ -40,12 +47,12 @@ export const PlayList = () => {
         </IconBackContainer>
         <HeaderWraper>
           <ImagenContainer>
-            <img src={activePlayList?.images[0].url} alt={activePlayList?.name} />
+            <img src={active?.images[0].url} alt={active?.name} />
           </ImagenContainer>
           <TextContainer>
             <span>Lista</span>
-            <h1>{activePlayList?.name}</h1>
-            <p>{activePlayList?.owner.display_name}</p>
+            <h1>{active?.name}</h1>
+            <p>{active?.owner.display_name}</p>
           </TextContainer>
         </HeaderWraper>
       </HeaderContainer>
@@ -60,7 +67,7 @@ export const PlayList = () => {
         </BodyWraper>
       </BodyContainer>
       <Background>
-        <img src={activePlayList?.images[0].url} />
+        <img src={active?.images[0].url} />
       </Background>
     </Container>
   )

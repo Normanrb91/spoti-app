@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from 'react'
+import { type PropsWithChildren, memo } from 'react'
 import { Link, LinkOff } from './styles'
 
 type SidebarItemProps = PropsWithChildren<{
@@ -7,7 +7,7 @@ type SidebarItemProps = PropsWithChildren<{
   path?: string
 }>
 
-export const SidebarItem = ({ icon, path, closedSidebar = () => {}, children }: SidebarItemProps) => {
+const SidebarItem = ({ icon, path, closedSidebar = () => {}, children }: SidebarItemProps) => {
   return (
     <>
       {path ? (
@@ -24,3 +24,7 @@ export const SidebarItem = ({ icon, path, closedSidebar = () => {}, children }: 
     </>
   )
 }
+
+const MemoSidebarItem = memo(SidebarItem)
+
+export { MemoSidebarItem as SidebarItem }

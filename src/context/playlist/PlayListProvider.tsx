@@ -1,16 +1,16 @@
 import { type PropsWithChildren, useReducer, useContext } from 'react'
+import { FeaturedResponse, PlayListIdResponse, PlayListResponse } from '@/interfaces'
+import { spotiApi } from '@/libs'
 import { PlayListState, plaListReducer } from './playListReducer'
 import { PlayListContext } from './PlayListContext'
 import { AuthContext } from '../auth'
-import { FeaturedResponse, PlayListIdResponse, PlayListResponse } from '@/interfaces'
-import { spotiApi } from '@/libs'
 
 const initialState: PlayListState = {
   userPlayList: [],
   featuredPlaylist: [],
-  activePlayList: null,
-  tracksPlayList: [],
-  activeTrack: null
+  activePlayList: { activeLoading: true, active: null },
+  activeTrack: null,
+  loading: true
 }
 
 export const PlayListProvider = ({ children }: PropsWithChildren) => {
@@ -37,6 +37,8 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
 
   const getPlayListId = async (id: string) => {
     try {
+      dispatch({ type: 'DeletedActivePlaylist' })
+
       const { data } = await spotiApi.get<PlayListIdResponse>(`/playlists/${id}`)
 
       dispatch({
@@ -49,9 +51,7 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
     }
   }
 
-  const getTracksPlayList = async () => {}
-  const setActivePlayList = () => {}
-  const setActiveTrack = () => {}
+  const getTrack = () => {}
 
   return (
     <PlayListContext.Provider
@@ -59,9 +59,7 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
         ...playListState,
         getPLayLists,
         getPlayListId,
-        getTracksPlayList,
-        setActivePlayList,
-        setActiveTrack
+        getTrack
       }}
     >
       {children}

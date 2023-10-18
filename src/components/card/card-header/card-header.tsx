@@ -1,10 +1,10 @@
-import { useContext } from 'react'
+import { memo, useContext } from 'react'
 import { GradientContext } from '@/context'
-import { PlayIcon } from '@/assets'
 import { PlayList } from '@/interfaces'
+import { PlayIcon } from '@/assets'
 import { IconContainer, ImagenContainer, Link, TextContainer } from './styles'
 
-export const CardHeader = ({ id, images, name }: PlayList) => {
+const CardHeader = ({ id, images, name }: PlayList) => {
   const { handleMouseEnter, handleMouseLeave } = useContext(GradientContext)
 
   return (
@@ -23,3 +23,7 @@ export const CardHeader = ({ id, images, name }: PlayList) => {
     </Link>
   )
 }
+
+const MemoCardHeader = memo(CardHeader)
+
+export { MemoCardHeader as CardHeader }

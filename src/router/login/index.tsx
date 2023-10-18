@@ -1,5 +1,5 @@
-import { Container, LoginButton } from './styles'
 import { login_constants } from '@/libs'
+import { Container, LoginButton } from './styles'
 
 export const Login = () => {
   const handleOnClick = () => {

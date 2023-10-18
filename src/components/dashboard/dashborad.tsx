@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from 'react'
+import { memo, useState, useEffect, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
+import { PlayListContext } from '@/context'
 import { Sidebar } from '@/components'
 import { HamburguerIcon } from '@/assets'
-import { PlayListContext } from '@/context'
 import { Container, IconContainer, Contetnt, Overlay } from './styles'
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const [isActive, isSetActive] = useState(false)
   const { getPLayLists } = useContext(PlayListContext)
 
@@ -45,3 +45,7 @@ export const Dashboard = () => {
     </Container>
   )
 }
+
+const MemoDashboard = memo(Dashboard)
+
+export { MemoDashboard as Dashboard }
