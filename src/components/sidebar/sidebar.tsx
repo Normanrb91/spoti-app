@@ -15,10 +15,10 @@ const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
   return (
     <Container className={!isActive ? 'inactive' : undefined}>
       <Menu>
-        <SidebarItem closedSidebar={closedSidebar} icon={<HomeIcon />} path="home">
+        <SidebarItem closedSidebar={closedSidebar} icon={<HomeIcon />} path="/">
           Inicio
         </SidebarItem>
-        <SidebarItem closedSidebar={closedSidebar} icon={<SearchIcon />} path="search">
+        <SidebarItem closedSidebar={closedSidebar} icon={<SearchIcon />} path="/search">
           Buscar
         </SidebarItem>
       </Menu>

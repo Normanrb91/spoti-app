@@ -11,9 +11,9 @@ export const Container = styled.div`
 
 export const IconBackContainer = styled.div`
     display: flex;
-    cursor: pointer;
+  
 
-    >span {
+    > button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -22,6 +22,8 @@ export const IconBackContainer = styled.div`
         background-color: ${({theme}) => theme.colors.background};
         color: ${({theme}) => theme.colors.textOn};
         border-radius: 99999px;        
+        border: none;
+        cursor: pointer;
     }
 `
 
@@ -100,9 +102,8 @@ export const TextContainer = styled.div`
 
 export const IconPlayContainer = styled.div`
     display: flex;
-    cursor: pointer;
-
-    >span {
+   
+    > button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -111,6 +112,8 @@ export const IconPlayContainer = styled.div`
         background-color: ${({theme}) => theme.colors.secondary};
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
         border-radius: 99999px;
+        border: none;
+        cursor: pointer;
 
         &:hover{
             transform: scale(1.05)

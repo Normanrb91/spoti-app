@@ -1,22 +1,31 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    position: relative;
     display: flex;
+    flex-direction: column;
     height: 100vh;
-    padding: 8px;
-    gap: 8px;
+
     background-color: ${({theme}) => theme.colors.background};
 `
 
+export const Wraper = styled.div`
+    position: relative;
+    display: flex;
+    flex: 1;
+    overflow: auto;
+    padding: 8px 8px 0px 8px;
+    gap: 8px;
+`
+
 export const IconContainer = styled.div`
+    display: none;
     position: absolute;
     right: 24px;
     top: 24px;
+    z-index: 99999;
+    color: ${({theme}) => theme.colors.textOff }; 
     transition-duration: .3s;
-    display: none;
     cursor: pointer;
-    color: ${({theme}) => theme.colors.textOff };
 
     :hover {
         color: ${({theme}) => theme.colors.textOn };
@@ -31,9 +40,8 @@ export const IconContainer = styled.div`
     }
 `
 
-export const Contetnt = styled.div`
+export const BodyContainer = styled.div`
     display: flex;
-    width: 100%; 
     flex: 1 1 0%;
     border-radius: 8px;
     overflow-y: auto;

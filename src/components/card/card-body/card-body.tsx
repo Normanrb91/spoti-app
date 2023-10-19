@@ -13,9 +13,9 @@ const CardBody = ({ id, images, name, description }: PlayList) => {
         <ImagenContainer>
           <img src={images[0].url} alt={name} />
           <IconContainer>
-            <span>
+            <button>
               <PlayIcon width={32} height={32} />
-            </span>
+            </button>
           </IconContainer>
         </ImagenContainer>
         <TextContainer>

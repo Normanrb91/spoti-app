@@ -38,12 +38,12 @@ export const PlayList = () => {
       <HeaderContainer $bgColor={color}>
         <IconBackContainer
           onClick={() => {
-            navigate(-1)
+            navigate('/', { replace: true })
           }}
         >
-          <span>
+          <button>
             <BackIcon width={32} height={32} />
-          </span>
+          </button>
         </IconBackContainer>
         <HeaderWraper>
           <ImagenContainer>
@@ -58,9 +58,9 @@ export const PlayList = () => {
       </HeaderContainer>
       <BodyContainer $bgColor={color}>
         <IconPlayContainer>
-          <span>
+          <button>
             <PlayIcon width={40} height={40} />
-          </span>
+          </button>
         </IconPlayContainer>
         <BodyWraper>
           <Table />

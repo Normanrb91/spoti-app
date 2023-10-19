@@ -1,9 +1,9 @@
 import { memo, useState, useEffect, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import { PlayListContext } from '@/context'
-import { Sidebar } from '@/components'
+import { Player, Sidebar } from '@/components'
 import { HamburguerIcon } from '@/assets'
-import { Container, IconContainer, Contetnt, Overlay } from './styles'
+import { Container, IconContainer, Wraper, Overlay, BodyContainer } from './styles'
 
 const Dashboard = () => {
   const [isActive, isSetActive] = useState(false)
@@ -27,21 +27,27 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Sidebar isActive={isActive} closedSidebar={closedSidebar} />
-      <IconContainer onClick={() => showSidebar()}>
-        <HamburguerIcon />
-      </IconContainer>
-      <Contetnt>
-        {isActive && (
-          <Overlay
-            className={isActive ? 'opacity' : undefined}
-            onClick={() => {
-              closedSidebar()
-            }}
-          />
-        )}
-        <Outlet />
-      </Contetnt>
+      <Wraper>
+        <Sidebar isActive={isActive} closedSidebar={closedSidebar} />
+
+        <IconContainer onClick={() => showSidebar()}>
+          <HamburguerIcon />
+        </IconContainer>
+
+        <BodyContainer>
+          {isActive && (
+            <Overlay
+              className={isActive ? 'opacity' : undefined}
+              onClick={() => {
+                closedSidebar()
+              }}
+            />
+          )}
+          <Outlet />
+        </BodyContainer>
+      </Wraper>
+
+      <Player />
     </Container>
   )
 }

@@ -11,7 +11,7 @@ const SidebarItem = ({ icon, path, closedSidebar = () => {}, children }: Sidebar
   return (
     <>
       {path ? (
-        <Link to={`/${path}`} onClick={() => closedSidebar()}>
+        <Link to={`${path}`} onClick={() => closedSidebar()}>
           {icon}
           {children}
         </Link>

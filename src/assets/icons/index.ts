@@ -6,3 +6,8 @@ export {PlayIcon} from './Play'
 export {SearchIcon} from './Search'
 export {TimeIcon} from './Time'
 export {BackIcon} from './Back'
+export {PrevIcon} from './Previus'
+export {NextIcon} from './Next'
+export {Volume} from './Volume'
+export {VolumeSilence} from './VolumeSilence'
+

@@ -37,14 +37,16 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
 
   const getPlayListId = async (id: string) => {
     try {
-      dispatch({ type: 'DeletedActivePlaylist' })
+      if (playListState.activePlayList.active?.id !== id) {
+        dispatch({ type: 'DeletedActivePlaylist' })
 
-      const { data } = await spotiApi.get<PlayListIdResponse>(`/playlists/${id}`)
+        const { data } = await spotiApi.get<PlayListIdResponse>(`/playlists/${id}`)
 
-      dispatch({
-        type: 'addActivePlaylist',
-        payload: data
-      })
+        dispatch({
+          type: 'addActivePlaylist',
+          payload: data
+        })
+      }
     } catch (error) {
       console.log(error)
       logout()

@@ -16,9 +16,9 @@ const CardHeader = ({ id, images, name }: PlayList) => {
         <h4>{name}</h4>
       </TextContainer>
       <IconContainer>
-        <span>
+        <button>
           <PlayIcon width={32} height={32} />
-        </span>
+        </button>
       </IconContainer>
     </Link>
   )

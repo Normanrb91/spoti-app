@@ -64,15 +64,17 @@ export const IconContainer = styled.div`
     opacity: 0;
     transition-duration: .3s;
 
-    >span {
+    > button {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 48px;
         height: 48px;
+        border: none;
         background-color: ${({theme}) => theme.colors.secondary};
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
         border-radius: 99999px;
+        cursor: pointer;
 
         &:hover{
             transform: scale(1.05)

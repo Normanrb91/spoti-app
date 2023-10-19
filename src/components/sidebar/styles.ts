@@ -30,6 +30,28 @@ export const Menu = styled.div`
 
 export const Library = styled(Menu)`
     flex: 1 1 0%;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: ${({theme}) => theme.colors.cardBody };
+
+        &:hover {
+            background: ${({theme}) => theme.colors.cardHeader };
+        }
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: ${({theme}) => theme.colors.cardHeader };    
+        border-radius: 20px;
+        
+        &:hover {
+            background: ${({theme}) => theme.colors.cardFocus };
+        }
+    }
 
 `
 
