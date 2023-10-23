@@ -14,7 +14,7 @@ const Player = () => {
           {currentMusic.track && <img src={currentMusic?.track?.album_image} alt={currentMusic?.track?.album_name} />}
         </ImagenContainer>
         <TextContainer>
-          <h4>{currentMusic?.track?.album_name}</h4>
+          <h4>{currentMusic?.track?.name}</h4>
           <p>{currentMusic?.track?.artist}</p>
         </TextContainer>
       </ContentLeft>

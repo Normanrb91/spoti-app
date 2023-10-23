@@ -10,6 +10,7 @@ type trackAction =
     | { type: 'setVolume', payload: number}
     | { type: 'setIsPlaying', payload: boolean}
     | { type: 'setCurrentMusic', payload: CurrentMusic}
+    | { type: 'setIndexTrack', payload: number}
 
 
 export const trackReducer = (state: TrackState, action: trackAction): TrackState => {
@@ -32,6 +33,16 @@ export const trackReducer = (state: TrackState, action: trackAction): TrackState
             return {
                 ...state,
                 currentMusic: action.payload
+            }
+
+        case 'setIndexTrack':    
+            return {
+                ...state,
+                currentMusic: {
+                    ...state.currentMusic,
+                    track: state.currentMusic.tracks[action.payload],
+                    index: action.payload
+                }
             }
         
         default:

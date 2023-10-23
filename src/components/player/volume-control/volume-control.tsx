@@ -1,20 +1,30 @@
-import { Slider } from '@mui/material'
-import { Container, IconVolume, Wraper } from './styles'
-import { Volume } from '@/assets'
 import { useEffect, useRef, memo, useContext } from 'react'
 import { useTheme } from 'styled-components'
+import { Slider } from '@mui/material'
+import { Volume, VolumeSilence } from '@/assets'
 import { TrackContext } from '@/context'
+import { Container, IconVolume, Wraper } from './styles'
 
 const VolumeControl = () => {
   const theme = useTheme()
   const { volume, setVolume } = useContext(TrackContext)
+  const previousVolumeRef = useRef(volume)
+
+  const isVolumeSilenced = volume == 0
+
+  const handleClickVolumen = () => {
+    if (isVolumeSilenced) {
+      setVolume(previousVolumeRef.current)
+    } else {
+      previousVolumeRef.current = volume
+      setVolume(0)
+    }
+  }
 
   return (
     <Container>
       <Wraper style={{ gap: '8px', width: '40%' }}>
-        <IconVolume>
-          <Volume />
-        </IconVolume>
+        <IconVolume onClick={handleClickVolumen}>{isVolumeSilenced ? <VolumeSilence /> : <Volume />}</IconVolume>
         <Slider
           aria-label="volume"
           min={0}

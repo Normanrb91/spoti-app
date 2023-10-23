@@ -9,12 +9,14 @@ import { Container, IconControl, IconPlayer, Wraper } from './styles'
 const TrackControl = () => {
   const theme = useTheme()
   const audio = useRef<HTMLAudioElement>(null)
-  const { isPlaying, setIsPlaying, volume, currentMusic } = useContext(TrackContext)
+  const { isPlaying, setIsPlaying, volume, currentMusic, setNextTrack, setPrevTrack } = useContext(TrackContext)
   const [currentTime, setCurrentTime] = useState(0)
   const duration = audio?.current?.duration ?? 0
 
   useEffect(() => {
-    isPlaying ? audio.current!.play() : audio.current!.pause()
+    isPlaying && audio.current!.readyState > audio.current!.HAVE_CURRENT_DATA
+      ? audio.current!.play()
+      : audio.current!.pause()
   }, [isPlaying])
 
   useEffect(() => {
@@ -22,22 +24,32 @@ const TrackControl = () => {
   }, [volume])
 
   useEffect(() => {
+    if (currentMusic.track?.preview_url === '') {
+      audio.current!.pause()
+      audio.current!.currentTime = 0
+
+      // mostrar que no se puede reproducir toast
+      return
+    }
+
     if (currentMusic.track) {
       const { track } = currentMusic
       const src = track.preview_url
       audio.current!.src = src
       audio.current!.volume = volume
-      audio.current!.play()
+      isPlaying ? audio.current!.play() : audio.current!.pause()
     }
   }, [currentMusic])
 
   useEffect(() => {
     audio.current!.addEventListener('timeupdate', handleTimeUpdate)
+    audio.current!.addEventListener('ended', handleEnded)
 
     return () => {
       audio.current!.removeEventListener('timeupdate', handleTimeUpdate)
+      audio.current!.removeEventListener('ended', handleEnded)
     }
-  }, [])
+  }, [setNextTrack])
 
   const handleClick = () => {
     setIsPlaying(!isPlaying)
@@ -47,9 +59,21 @@ const TrackControl = () => {
     setCurrentTime(audio.current!.currentTime)
   }
 
-  const handleNextTrack = () => {}
+  const handleEnded = () => {
+    setTimeout(() => {
+      setNextTrack()
+    }, 500)
+  }
 
-  const handlePrevTrack = () => {}
+  const handleNextTrack = () => {
+    setCurrentTime(0)
+    setNextTrack()
+  }
+
+  const handlePrevTrack = () => {
+    setCurrentTime(0)
+    setPrevTrack()
+  }
 
   return (
     <Container>

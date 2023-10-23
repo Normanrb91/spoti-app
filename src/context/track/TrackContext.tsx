@@ -5,6 +5,7 @@ export interface CurrentMusic {
   track: Track | null
   tracks: Track[]
   playlist: PlayListId | null
+  index: number
 }
 
 export interface TrackContextProps {
@@ -14,6 +15,8 @@ export interface TrackContextProps {
   setVolume: (volume: number) => void
   setIsPlaying: (isPlaying: boolean) => void
   setCurrentMusic: (id: string) => Promise<void>
+  setNextTrack: () => void
+  setPrevTrack: () => void
 }
 
 export const TrackContext = createContext({} as TrackContextProps)

@@ -61,24 +61,6 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
     })
   }
 
-  // const setTrack = (id: string) => {
-  //   let track
-
-  //   if (id === 'card') {
-  //     console.log(playListState.activePlayList)
-
-  //     track = playListState.activePlayList.active?.tracks[0]
-  //     console.log(track)
-  //   } else {
-  //     track = playListState.activePlayList.active?.tracks.filter(idt => idt.id === id)[0]
-  //   }
-  //   const tracks = playListState.activePlayList.active?.tracks ?? []
-  //   const playlist = playListState.activePlayList.active ?? null
-
-  //   setCurrentMusic({ track, tracks, playlist })
-  //   setIsPlaying(true)
-  // }
-
   return (
     <PlayListContext.Provider
       value={{
