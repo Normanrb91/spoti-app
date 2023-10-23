@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { GradientContext, PlayListContext } from '@/context'
 import { CardBody, CardHeader, Loader } from '@/components'
 import { useGreeting } from '@/hooks'
@@ -13,9 +13,13 @@ import {
 } from './styles'
 
 export const Home = () => {
-  const { userPlayList, featuredPlaylist, loading } = useContext(PlayListContext)
+  const { myPlaylists, featuredPlaylists, loading, resetPlayListId } = useContext(PlayListContext)
   const { color } = useContext(GradientContext)
   const { greeting } = useGreeting()
+
+  useEffect(() => {
+    resetPlayListId()
+  }, [])
 
   if (loading) return <Loader />
 
@@ -25,7 +29,7 @@ export const Home = () => {
         <HeaderContainer>
           <h1>{greeting}</h1>
           <HeaderWraper>
-            {userPlayList.map(playlist => (
+            {myPlaylists.map(playlist => (
               <CardHeader key={playlist.id} {...playlist} />
             ))}
           </HeaderWraper>
@@ -36,7 +40,7 @@ export const Home = () => {
       <BodyContainer>
         <h2>Listas destacadas</h2>
         <BodyWraper>
-          {featuredPlaylist.map(playlist => (
+          {featuredPlaylists.map(playlist => (
             <CardBody key={playlist.id} {...playlist} />
           ))}
         </BodyWraper>

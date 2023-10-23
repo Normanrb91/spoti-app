@@ -2,8 +2,8 @@ import { useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useColor } from 'color-thief-react'
 import { PlayListContext } from '@/context'
-import { Loader, Table } from '@/components'
-import { BackIcon, PlayIcon } from '@/assets'
+import { Loader, PlayButton, Table } from '@/components'
+import { BackIcon } from '@/assets'
 import {
   Background,
   BodyContainer,
@@ -20,9 +20,10 @@ import {
 export const PlayList = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { getPlayListId, activePlayList } = useContext(PlayListContext)
-  const { active, activeLoading } = activePlayList
-  const { data: color } = useColor(active?.images[0].url ?? '', 'hex', {
+  const { getPlayListId, playlist: playActive } = useContext(PlayListContext)
+  const { loading, playlist } = playActive
+
+  const { data: color } = useColor(playlist?.image ?? '', 'hex', {
     crossOrigin: '10',
     quality: 10
   })
@@ -31,7 +32,7 @@ export const PlayList = () => {
     getPlayListId(id!)
   }, [id])
 
-  if (activeLoading) return <Loader />
+  if (loading) return <Loader />
 
   return (
     <Container>
@@ -47,27 +48,25 @@ export const PlayList = () => {
         </IconBackContainer>
         <HeaderWraper>
           <ImagenContainer>
-            <img src={active?.images[0].url} alt={active?.name} />
+            <img src={playlist?.image} alt={playlist?.name} />
           </ImagenContainer>
           <TextContainer>
             <span>Lista</span>
-            <h1>{active?.name}</h1>
-            <p>{active?.owner.display_name}</p>
+            <h1>{playlist?.name}</h1>
+            <p>{playlist?.owner}</p>
           </TextContainer>
         </HeaderWraper>
       </HeaderContainer>
       <BodyContainer $bgColor={color}>
         <IconPlayContainer>
-          <button>
-            <PlayIcon width={40} height={40} />
-          </button>
+          <PlayButton id={playlist?.id} size="big" />
         </IconPlayContainer>
         <BodyWraper>
           <Table />
         </BodyWraper>
       </BodyContainer>
       <Background>
-        <img src={active?.images[0].url} />
+        <img src={playlist?.image} />
       </Background>
     </Container>
   )

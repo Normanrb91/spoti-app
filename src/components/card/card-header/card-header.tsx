@@ -1,26 +1,26 @@
 import { memo, useContext } from 'react'
 import { GradientContext } from '@/context'
+import { PlayButton } from '@/components'
 import { PlayList } from '@/interfaces'
-import { PlayIcon } from '@/assets'
-import { IconContainer, ImagenContainer, Link, TextContainer } from './styles'
+import { Container, IconContainer, ImagenContainer, Link, TextContainer } from './styles'
 
-const CardHeader = ({ id, images, name }: PlayList) => {
+const CardHeader = ({ id, image, name }: PlayList) => {
   const { handleMouseEnter, handleMouseLeave } = useContext(GradientContext)
 
   return (
-    <Link to={`/playlist/${id}`} onMouseEnter={() => handleMouseEnter(images[0].url)} onMouseLeave={handleMouseLeave}>
-      <ImagenContainer>
-        <img src={images[0].url} alt={name} />
-      </ImagenContainer>
-      <TextContainer>
-        <h4>{name}</h4>
-      </TextContainer>
+    <Container onMouseEnter={() => handleMouseEnter(image)} onMouseLeave={handleMouseLeave}>
       <IconContainer>
-        <button>
-          <PlayIcon width={32} height={32} />
-        </button>
+        <PlayButton id={id} />
       </IconContainer>
-    </Link>
+      <Link to={`/playlist/${id}`}>
+        <ImagenContainer>
+          <img src={image} alt={name} />
+        </ImagenContainer>
+        <TextContainer>
+          <h4>{name}</h4>
+        </TextContainer>
+      </Link>
+    </Container>
   )
 }
 

@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
-import { PlayListContext } from '@/context'
+import { PlayListContext, TrackContext } from '@/context'
 import { Player, Sidebar } from '@/components'
 import { HamburguerIcon } from '@/assets'
 import { Container, IconContainer, Wraper, Overlay, BodyContainer } from './styles'
@@ -8,6 +8,7 @@ import { Container, IconContainer, Wraper, Overlay, BodyContainer } from './styl
 const Dashboard = () => {
   const [isActive, isSetActive] = useState(false)
   const { getPLayLists } = useContext(PlayListContext)
+  const { currentMusic } = useContext(TrackContext)
 
   useEffect(() => {
     getPLayLists()
@@ -47,7 +48,7 @@ const Dashboard = () => {
         </BodyContainer>
       </Wraper>
 
-      <Player />
+      {currentMusic.track && <Player />}
     </Container>
   )
 }

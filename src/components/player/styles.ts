@@ -8,14 +8,12 @@ export const Container = styled.div`
     padding: 16px;
 `
 
-
-export const ContentRight = styled.div`
+export const ContentLeft = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 
     height: 100%;
-    color: white;
+    gap: 16px;
 `
 
 export const ImagenContainer = styled.div`
@@ -60,83 +58,3 @@ export const TextContainer = styled.div`
         color: ${({theme}) => theme.colors.textOff};
     }
 `
-
-
-export const ContentCenter= styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
-`
-
-export const Grid= styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    gap: 24px;
-
-    > span {
-        font-size: ${({theme}) => theme.fontSizes[12]};
-        color: ${({theme}) => theme.colors.textOff};
-    }
-`
-
-export const IconPlayer = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: none;
-    background-color: ${({theme}) => theme.colors.textOn};
-    border-radius: 99999px;
-    cursor: pointer;
-
-    &:hover{
-        transform: scale(1.05)
-    }
-`
-
-export const IconControl = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    border: none;
-    background-color: transparent;
-    color: ${({theme}) => theme.colors.textOff};
-    cursor: pointer;
-
-    &:hover{
-        color: ${({theme}) => theme.colors.textOn};
-    }
-`
-
-
-export const ContentLeft = styled.div`
-    display: flex;
-    align-items: center;
-
-    height: 100%;
-    gap: 16px;
-`
-
-export const IconVolume = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    border: none;
-    background-color: transparent;
-    color: ${({theme}) => theme.colors.textOff};
-    cursor: pointer;
-
-    &:hover{
-        color: ${({theme}) => theme.colors.textOn};
-    }
-`
-

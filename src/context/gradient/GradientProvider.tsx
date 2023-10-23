@@ -7,7 +7,7 @@ export const GradientProvider = ({ children }: PropsWithChildren) => {
   const [color, setColor] = useState({ color: '' })
   const [image, setImage] = useState('')
   const [delayHandler, setDelayHandler] = useState<NodeJS.Timeout>()
-  const { userPlayList } = useContext(PlayListContext)
+  const { myPlaylists } = useContext(PlayListContext)
   const { data } = useColor(image, 'hex', { crossOrigin: '10', quality: 10 })
 
   useEffect(() => {
@@ -17,10 +17,10 @@ export const GradientProvider = ({ children }: PropsWithChildren) => {
   }, [data])
 
   useEffect(() => {
-    if (userPlayList.length > 0) {
-      setImage(userPlayList[0].images[0].url)
+    if (myPlaylists.length > 0) {
+      setImage(myPlaylists[0].image)
     }
-  }, [userPlayList])
+  }, [myPlaylists])
 
   const handleMouseEnter = (imageUrl: string) => {
     setDelayHandler(

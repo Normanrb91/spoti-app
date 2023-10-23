@@ -1,15 +1,17 @@
 import { type PropsWithChildren, useReducer, useContext } from 'react'
 import { FeaturedResponse, PlayListIdResponse, PlayListResponse } from '@/interfaces'
-import { spotiApi } from '@/libs'
+import { mapPlaylistId, mapPlaylists, spotiApi } from '@/libs'
 import { PlayListState, plaListReducer } from './playListReducer'
 import { PlayListContext } from './PlayListContext'
 import { AuthContext } from '../auth'
 
 const initialState: PlayListState = {
-  userPlayList: [],
-  featuredPlaylist: [],
-  activePlayList: { activeLoading: true, active: null },
-  activeTrack: null,
+  myPlaylists: [],
+  featuredPlaylists: [],
+  playlist: {
+    loading: true,
+    playlist: null
+  },
   loading: true
 }
 
@@ -19,14 +21,16 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
 
   const getPLayLists = async () => {
     try {
-      const { data: user } = await spotiApi.get<PlayListResponse>('me/playlists?limit=6&offset=0')
+      const { data: list } = await spotiApi.get<PlayListResponse>('me/playlists?limit=6&offset=0')
       const { data: featured } = await spotiApi.get<FeaturedResponse>('browse/featured-playlists?limit=10&offset=0')
+      const listsMap = mapPlaylists(list)
+      const featuredmap = mapPlaylists(featured.playlists)
 
       dispatch({
-        type: 'addPlayLists',
+        type: 'setPlaylists',
         payload: {
-          user: user.items,
-          featured: featured.playlists.items
+          user: listsMap,
+          featured: featuredmap
         }
       })
     } catch (error) {
@@ -37,23 +41,43 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
 
   const getPlayListId = async (id: string) => {
     try {
-      if (playListState.activePlayList.active?.id !== id) {
-        dispatch({ type: 'DeletedActivePlaylist' })
+      const { data } = await spotiApi.get<PlayListIdResponse>(`/playlists/${id}`)
+      const playlistMap = mapPlaylistId(data)
 
-        const { data } = await spotiApi.get<PlayListIdResponse>(`/playlists/${id}`)
-
-        dispatch({
-          type: 'addActivePlaylist',
-          payload: data
-        })
-      }
+      dispatch({
+        type: 'setPlaylist',
+        payload: { playlist: playlistMap, loading: false }
+      })
     } catch (error) {
       console.log(error)
       logout()
     }
   }
 
-  const getTrack = () => {}
+  const resetPlayListId = () => {
+    dispatch({
+      type: 'setPlaylist',
+      payload: { playlist: null, loading: true }
+    })
+  }
+
+  // const setTrack = (id: string) => {
+  //   let track
+
+  //   if (id === 'card') {
+  //     console.log(playListState.activePlayList)
+
+  //     track = playListState.activePlayList.active?.tracks[0]
+  //     console.log(track)
+  //   } else {
+  //     track = playListState.activePlayList.active?.tracks.filter(idt => idt.id === id)[0]
+  //   }
+  //   const tracks = playListState.activePlayList.active?.tracks ?? []
+  //   const playlist = playListState.activePlayList.active ?? null
+
+  //   setCurrentMusic({ track, tracks, playlist })
+  //   setIsPlaying(true)
+  // }
 
   return (
     <PlayListContext.Provider
@@ -61,7 +85,7 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
         ...playListState,
         getPLayLists,
         getPlayListId,
-        getTrack
+        resetPlayListId
       }}
     >
       {children}

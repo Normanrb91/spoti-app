@@ -1,16 +1,18 @@
 import { createContext } from 'react'
-import { PlayList, PlayListIdResponse } from '@/interfaces'
+import { PlayList, PlayListId, Track } from '@/interfaces'
 
 export interface PlayListContextProps {
-  userPlayList: PlayList[]
-  featuredPlaylist: PlayList[]
-  activePlayList: { activeLoading: boolean; active: PlayListIdResponse | null }
-  activeTrack: any
+  myPlaylists: PlayList[]
+  featuredPlaylists: PlayList[]
+  playlist: {
+    loading: boolean
+    playlist: PlayListId | null
+  }
   loading: boolean
 
   getPLayLists: () => Promise<void>
   getPlayListId: (id: string) => Promise<void>
-  getTrack: () => void
+  resetPlayListId: () => void
 }
 
 export const PlayListContext = createContext({} as PlayListContextProps)

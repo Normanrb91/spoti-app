@@ -10,7 +10,7 @@ type SidebarProps = {
 }
 
 const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
-  const { userPlayList } = useContext(PlayListContext)
+  const { myPlaylists } = useContext(PlayListContext)
 
   return (
     <Container className={!isActive ? 'inactive' : undefined}>
@@ -25,7 +25,7 @@ const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
       <Library>
         <SidebarItem icon={<LibraryIcon />}>Tus listas</SidebarItem>
         <CardContainer>
-          {userPlayList.map(playlist => (
+          {myPlaylists.map(playlist => (
             <CardSidebar {...playlist} key={playlist.id} />
           ))}
         </CardContainer>

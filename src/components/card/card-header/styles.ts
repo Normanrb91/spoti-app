@@ -2,11 +2,9 @@ import { NavLink as NavLinkRouter } from 'react-router-dom'
 import styled from "styled-components";
 
 
-export const Link = styled(NavLinkRouter)`
+
+export const Container = styled.article`
     position: relative;
-    display: flex;
-    align-items: center;
-    gap: 20px;
     border-radius: 6px;
     background-color: ${({theme}) => theme.colors.cardHeader};
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
@@ -17,6 +15,13 @@ export const Link = styled(NavLinkRouter)`
     &:hover{
         background-color: ${({theme}) => theme.colors.cardFocus};
     }
+`
+
+export const Link = styled(NavLinkRouter)`
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 `
 
 export const ImagenContainer = styled.div`
@@ -43,8 +48,10 @@ export const TextContainer = styled.div`
 export const IconContainer = styled.div`
     position: absolute;
     right: 16px;
+    top: 20%;
     opacity: 0;
     transition-duration: .3s;
+    z-index: 2;
 
     > button {
         display: flex;
@@ -58,14 +65,13 @@ export const IconContainer = styled.div`
         border-radius: 99999px;
         cursor: pointer;
         
-
         &:hover{
             transform: scale(1.05)
         }
         
     }
 
-    ${Link}:hover & {
+    ${Container}:hover & {
         opacity: 1;
     }
 `

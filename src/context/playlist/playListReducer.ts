@@ -1,16 +1,18 @@
-import { PlayList, PlayListIdResponse } from "@/interfaces"
+import { PlayList, PlayListId, PlayListIdResponse, Track } from "@/interfaces"
 
 export interface PlayListState {
-    userPlayList: PlayList[]
-    featuredPlaylist: PlayList[]
-    activePlayList: { activeLoading: boolean; active: PlayListIdResponse | null }
-    activeTrack: any
+    myPlaylists: PlayList[]
+    featuredPlaylists: PlayList[]
+    playlist: { 
+        loading: boolean
+        playlist: PlayListId | null
+    }
     loading: boolean
   }
 
 type playListAction = 
-    | { type: 'addPlayLists', payload: { user: PlayList[], featured: PlayList[] }}
-    | { type: 'addActivePlaylist', payload: PlayListIdResponse}
+    | { type: 'setPlaylists', payload: { user: PlayList[], featured: PlayList[] }}
+    | { type: 'setPlaylist', payload: { loading: boolean, playlist: PlayListId | null}}
     | { type: 'DeletedActivePlaylist'}
     | { type: 'addActiveTrack', payload: any}
    
@@ -19,36 +21,22 @@ type playListAction =
 export const plaListReducer = (state: PlayListState, action: playListAction): PlayListState => {
 
     switch (action.type) {
-        case 'addPlayLists':         
+        case 'setPlaylists':         
             return{
                 ...state,
-                userPlayList: action.payload.user,
-                featuredPlaylist: action.payload.featured,
+                myPlaylists: action.payload.user,
+                featuredPlaylists: action.payload.featured,
                 loading: false
             }
-        case 'addActivePlaylist': 
+
+        case 'setPlaylist':         
             return{
                 ...state,
-                activePlayList: {
-                    activeLoading: false,
-                    active: action.payload
+                playlist: {
+                    playlist: action.payload.playlist, 
+                    loading: action.payload.loading
                 }
             }
-        case 'DeletedActivePlaylist': 
-            return{
-                ...state,
-                activePlayList: {
-                    activeLoading: true,
-                    active: null
-                }
-            }
-
-        case 'addActiveTrack': 
-            return{
-                ...state,
-                activeTrack: action.payload
-            }
-
         default:
             return state
     }

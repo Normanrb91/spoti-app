@@ -3,17 +3,17 @@ import { GradientContext } from '@/context'
 import { PlayList } from '@/interfaces'
 import { Link, ImagenContainer, TextContainer } from './styles'
 
-const CardSidebar = ({ id, images, name, owner }: PlayList) => {
+const CardSidebar = ({ id, image, name, owner }: PlayList) => {
   const { handleMouseEnter, handleMouseLeave } = useContext(GradientContext)
 
   return (
-    <Link to={`/playlist/${id}`} onMouseEnter={() => handleMouseEnter(images[0].url)} onMouseLeave={handleMouseLeave}>
+    <Link to={`/playlist/${id}`} onMouseEnter={() => handleMouseEnter(image)} onMouseLeave={handleMouseLeave}>
       <ImagenContainer>
-        <img src={images[0].url} alt={name} />
+        <img src={image} alt={name} />
       </ImagenContainer>
       <TextContainer>
         <h4>{name}</h4>
-        <p>{owner.display_name}</p>
+        <p>{owner}</p>
       </TextContainer>
     </Link>
   )
