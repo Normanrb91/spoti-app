@@ -4,16 +4,18 @@ import { mapPlaylistId, mapTrackList, spotiApi } from '@/libs'
 import { TrackState, trackReducer } from './TrackReducer'
 import { CurrentMusic, TrackContext } from './TrackContext'
 import { AuthContext } from '../auth'
+import { PlayListContext } from '../playlist'
 
 const initialState: TrackState = {
   isPlaying: false,
-  currentMusic: { track: null, tracks: [], playlist: null, index: 0 },
+  currentMusic: { track: null, tracks: [], playlist: null, index: null },
   volume: 0.3
 }
 
 export const TrackProvider = ({ children }: PropsWithChildren) => {
   const [trackState, dispatch] = useReducer(trackReducer, initialState)
   const { logout } = useContext(AuthContext)
+  const { playlist } = useContext(PlayListContext)
 
   const setVolume = (volume: number) => {
     dispatch({
@@ -52,23 +54,39 @@ export const TrackProvider = ({ children }: PropsWithChildren) => {
   }
 
   const setNextTrack = () => {
-    if (trackState.currentMusic.index >= trackState.currentMusic.tracks.length - 1) {
+    if (trackState.currentMusic.index! >= trackState.currentMusic.tracks.length - 1) {
       setIsPlaying(false)
       return
     }
 
     dispatch({
       type: 'setIndexTrack',
-      payload: trackState.currentMusic.index + 1
+      payload: trackState.currentMusic.index! + 1
     })
   }
 
   const setPrevTrack = () => {
-    if (trackState.currentMusic.index <= 0) return
+    if (trackState.currentMusic.index! <= 0) return
 
     dispatch({
       type: 'setIndexTrack',
-      payload: trackState.currentMusic.index - 1
+      payload: trackState.currentMusic.index! - 1
+    })
+  }
+
+  const setTrack = async (id: string) => {
+    const indexTrack = playlist.playlist?.tracks.findIndex(track => track.id === id)
+
+    const currentMusic: CurrentMusic = {
+      track: playlist.playlist?.tracks[indexTrack ?? 0] ?? null,
+      tracks: playlist.playlist?.tracks ?? [],
+      playlist: playlist.playlist,
+      index: indexTrack ?? 0
+    }
+
+    dispatch({
+      type: 'setCurrentMusic',
+      payload: currentMusic
     })
   }
 
@@ -80,7 +98,8 @@ export const TrackProvider = ({ children }: PropsWithChildren) => {
         setIsPlaying,
         setCurrentMusic,
         setNextTrack,
-        setPrevTrack
+        setPrevTrack,
+        setTrack
       }}
     >
       {children}

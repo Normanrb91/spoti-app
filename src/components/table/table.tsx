@@ -1,5 +1,6 @@
 import { memo, useContext } from 'react'
-import { PlayListContext } from '@/context'
+import { PlayListContext, TrackContext } from '@/context'
+import { Loader } from '@/components'
 import { convertTime } from '@/libs'
 import { TimeIcon } from '@/assets'
 import { Col, Container, HeaderCol, HeaderRow, ImageContainer, Info, Row, Tracks } from './styles'
@@ -7,6 +8,12 @@ import { Col, Container, HeaderCol, HeaderRow, ImageContainer, Info, Row, Tracks
 const Table = () => {
   const { playlist: playActive } = useContext(PlayListContext)
   const { playlist } = playActive
+  const { currentMusic, isPlaying, setTrack, setIsPlaying } = useContext(TrackContext)
+
+  const handleClick = (id: string) => {
+    setTrack(id)
+    setIsPlaying(true)
+  }
 
   return (
     <Container>
@@ -28,9 +35,9 @@ const Table = () => {
       </HeaderRow>
       <Tracks>
         {playlist?.tracks.map((track, index) => (
-          <Row key={track.id}>
+          <Row key={track.id} onClick={() => handleClick(track.id)} $active={currentMusic.index === index}>
             <Col className="number">
-              <span>{index + 1}</span>
+              {currentMusic.index === index && isPlaying ? <Loader size="small" /> : <span>{index + 1}</span>}
             </Col>
             <Col>
               <ImageContainer>

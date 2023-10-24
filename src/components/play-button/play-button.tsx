@@ -1,7 +1,7 @@
 import { memo, useContext } from 'react'
-import { Button } from './styles'
 import { TrackContext } from '@/context'
 import { PauseIcon, PlayIcon } from '@/assets'
+import { Button } from './styles'
 
 type PlayButtonProps = {
   id: string | undefined

@@ -5,7 +5,7 @@ export interface CurrentMusic {
   track: Track | null
   tracks: Track[]
   playlist: PlayListId | null
-  index: number
+  index: number | null
 }
 
 export interface TrackContextProps {
@@ -17,6 +17,7 @@ export interface TrackContextProps {
   setCurrentMusic: (id: string) => Promise<void>
   setNextTrack: () => void
   setPrevTrack: () => void
+  setTrack: (id: string) => void
 }
 
 export const TrackContext = createContext({} as TrackContextProps)

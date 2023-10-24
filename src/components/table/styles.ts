@@ -29,10 +29,11 @@ export const Tracks = styled.div`
     }
 ` 
 
-export const Row = styled.div`
+export const Row = styled.div<{$active?: boolean}>`
     display: grid;
     grid-template-columns: 0.3fr 2fr 2fr 0.4fr;
-    color: ${({theme}) => theme.colors.textOn};
+    color:  ${(props) => props.$active  ?  ({theme}) => theme.colors.secondary :  ({theme}) => theme.colors.textOn};
+    background-color: ${(props) => props.$active  ? ({theme}) => theme.colors.CardBodyHover :  'transparent'};
     cursor: pointer;
 
     &:hover{

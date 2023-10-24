@@ -1,30 +1,30 @@
 import { keyframes, styled } from 'styled-components'
 
 
-const dance = keyframes`
+const dance = (h: string) => keyframes`
     from {
-        height: 10px;
+        height: ${h};
     }
     to {
         height: 100%;
     }
 `
 
-export const StyledLoader = styled.div`
+export const StyledLoader = styled.div<{$heightContent: string, $widthContent: string, $width?: string, $height?: string}>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 100vh;
+    width: ${props => props.$widthContent};
+    min-height: ${props => props.$heightContent};
 
     .bars {
         display: flex;
         justify-content: center;
         align-items: flex-end;
         overflow: hidden;
-        width: 100px;
-        min-width: 100px;
-        height: 50px;
+        width: ${props => props.$width};
+        min-width: ${props => props.$width};
+        height: ${props => props.$height};
         margin: 0 auto;
         z-index: 2;
         position: relative;
@@ -33,12 +33,12 @@ export const StyledLoader = styled.div`
     }
 `
 
-export const StyledBar = styled.div<{$delay: string}>`
-    width: 10px;
-    height: 5px;
-    margin: 0 2px;
+export const StyledBar = styled.div<{$delay: string, $height: string,  $width: string, $marging: string}>`
+    width: ${props => props.$width};
+    height: ${props => props.$height};
+    margin: ${props => props.$marging};
     background-color: ${({theme})=> theme.colors.secondary};
-    animation-name: ${dance};
+    animation-name: ${props => dance(props.$height)};
     animation-duration: 400ms;
     animation-play-state: running;
     animation-direction: alternate;

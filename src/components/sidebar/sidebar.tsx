@@ -18,9 +18,7 @@ const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
         <SidebarItem closedSidebar={closedSidebar} icon={<HomeIcon />} path="/">
           Inicio
         </SidebarItem>
-        <SidebarItem closedSidebar={closedSidebar} icon={<SearchIcon />} path="/search">
-          Buscar
-        </SidebarItem>
+        <SidebarItem icon={<SearchIcon />}>Buscar</SidebarItem>
       </Menu>
       <Library>
         <SidebarItem icon={<LibraryIcon />}>Tus listas</SidebarItem>
