@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, memo, useContext } from 'react'
-import { Slider } from '@mui/material'
+import { Alert, Slider, Snackbar } from '@mui/material'
 import { useTheme } from 'styled-components'
 import { TrackContext } from '@/context'
 import { convertTimeS } from '@/libs'
@@ -11,6 +11,7 @@ const TrackControl = () => {
   const audio = useRef<HTMLAudioElement>(null)
   const { isPlaying, setIsPlaying, volume, currentMusic, setNextTrack, setPrevTrack } = useContext(TrackContext)
   const [currentTime, setCurrentTime] = useState(0)
+  const [open, setOpen] = useState(false)
   const duration = audio?.current?.duration ?? 0
 
   useEffect(() => {
@@ -27,8 +28,8 @@ const TrackControl = () => {
     if (currentMusic.track?.preview_url === '') {
       audio.current!.pause()
       audio.current!.currentTime = 0
-
-      // mostrar que no se puede reproducir toast
+      audio.current!.src = 'spotify:track:2takcwOaAZWiXQijPHIx7B'
+      setOpen(true)
       return
     }
 
@@ -118,6 +119,20 @@ const TrackControl = () => {
         />
         <span>{duration ? convertTimeS(duration) : '0:00'}</span>
       </Wraper>
+
+      <Snackbar
+        open={open}
+        autoHideDuration={800}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center'
+        }}
+      >
+        <Alert onClose={() => setOpen(false)} severity="error">
+          Canción no disponible
+        </Alert>
+      </Snackbar>
     </Container>
   )
 }

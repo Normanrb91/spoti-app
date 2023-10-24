@@ -35,9 +35,17 @@ const Table = () => {
       </HeaderRow>
       <Tracks>
         {playlist?.tracks.map((track, index) => (
-          <Row key={track.id} onClick={() => handleClick(track.id)} $active={currentMusic.index === index}>
+          <Row
+            key={track.id}
+            onClick={() => handleClick(track.id)}
+            $active={currentMusic.index === index && playlist.id === currentMusic.playlist?.id}
+          >
             <Col className="number">
-              {currentMusic.index === index && isPlaying ? <Loader size="small" /> : <span>{index + 1}</span>}
+              {currentMusic.index === index && isPlaying && playlist.id === currentMusic.playlist?.id ? (
+                <Loader size="small" />
+              ) : (
+                <span>{index + 1}</span>
+              )}
             </Col>
             <Col>
               <ImageContainer>
