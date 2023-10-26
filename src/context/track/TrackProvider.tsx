@@ -33,7 +33,7 @@ export const TrackProvider = ({ children }: PropsWithChildren) => {
 
   const setCurrentMusic = async (id: string) => {
     try {
-      const { data } = await spotiApi.get<PlayListIdResponse>(`/playlists/${id}`)
+      const { data } = await spotiApi.get<PlayListIdResponse>(`v1/playlists/${id}`)
       const listTracks = mapTrackList(data)
       const playlistMap = mapPlaylistId(data)
       const currentMusic: CurrentMusic = {
@@ -75,6 +75,8 @@ export const TrackProvider = ({ children }: PropsWithChildren) => {
   }
 
   const setTrack = async (id: string) => {
+    console.log('aa')
+
     const indexTrack = playlist.playlist?.tracks.findIndex(track => track.id === id)
 
     const currentMusic: CurrentMusic = {

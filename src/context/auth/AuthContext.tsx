@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 export interface AuthContextProps {
   token: string | null
-  signIn: (token: string) => void
+  signIn: () => void
   logout: () => void
 }
 

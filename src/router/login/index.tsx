@@ -1,12 +1,12 @@
-import { login_constants } from '@/libs'
+import { useContext } from 'react'
+import { AuthContext } from '@/context'
 import { Container, LoginButton } from './styles'
 
 export const Login = () => {
-  const handleOnClick = () => {
-    const { client_id, endpoint, redirect_uri, scope } = login_constants
-    const login_url = `${endpoint}?client_id=${client_id}&response_type=token&redirect_uri=${redirect_uri}&scope=${scope}`
+  const { signIn } = useContext(AuthContext)
 
-    window.location.href = login_url
+  const handleOnClick = () => {
+    signIn()
   }
 
   return (

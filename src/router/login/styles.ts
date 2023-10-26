@@ -11,7 +11,16 @@ export const Container = styled.div`
     background-color: #000;
 
     > img {
-        height: 20vh;
+        width: 50%;
+        height: auto;
+
+        @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.xs}) {
+        gap: 20px;
     }
 `
 
@@ -27,4 +36,7 @@ export const LoginButton = styled.button`
     font-size: ${({theme}) => theme.fontSizes[24]};
     cursor: pointer;
 
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        font-size: ${({theme}) => theme.fontSizes[16]};
+    }
 `

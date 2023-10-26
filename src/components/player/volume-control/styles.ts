@@ -5,21 +5,31 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    height: 100%;
+    margin-right: 8px;
     color: white;
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        justify-content: center;
+    }
 `
 
 export const Wraper= styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 40%;
     gap: 8px;
 
     > span {
         font-size: ${({theme}) => theme.fontSizes[12]};
         color: ${({theme}) => theme.colors.textOff};
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        width: 70%;
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        width: 100%;
     }
 `
 

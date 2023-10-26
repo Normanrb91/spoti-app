@@ -23,7 +23,7 @@ const VolumeControl = () => {
 
   return (
     <Container>
-      <Wraper style={{ gap: '8px', width: '40%' }}>
+      <Wraper>
         <IconVolume onClick={handleClickVolumen}>{isVolumeSilenced ? <VolumeSilence /> : <Volume />}</IconVolume>
         <Slider
           aria-label="volume"

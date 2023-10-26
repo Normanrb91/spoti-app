@@ -4,15 +4,25 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 88px;
-    padding: 16px;
+    min-height: 88px;
+    max-height: 190px;
+    padding: 16px 16px;
+
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        grid-template-columns: 1fr 2fr 1fr
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.xs}) {
+        grid-template-columns: 1fr; 
+        grid-template-rows: 2fr 2fr 1fr;
+        gap: 0;
+    }
 `
 
 export const ContentLeft = styled.div`
     display: flex;
     align-items: center;
-
-    height: 100%;
     gap: 16px;
 `
 
@@ -26,32 +36,25 @@ export const ImagenContainer = styled.div`
         height: 100%;
         border-radius: 6px;
     }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.xs}) {
+        display: none;
+    }
 `
 
 export const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
-    overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
     
     h4 {
-        width: 100%;
-        flex: none;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-weight: ${({theme}) => theme.fontWeights.semibold};
         font-size: ${({theme}) => theme.fontSizes[14]};
         color: ${({theme}) => theme.colors.textOn};
     }
 
     p {
-        flex: 1 1 0%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         line-height: 20px;
         font-weight: ${({theme}) => theme.fontWeights.normal};
         font-size: ${({theme}) => theme.fontSizes[12]};

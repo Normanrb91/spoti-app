@@ -24,7 +24,7 @@ const Sidebar = ({ isActive, closedSidebar }: SidebarProps) => {
         <SidebarItem icon={<LibraryIcon />}>Tus listas</SidebarItem>
         <CardContainer>
           {myPlaylists.map(playlist => (
-            <CardSidebar {...playlist} key={playlist.id} />
+            <CardSidebar key={playlist.id} playlist={playlist} closedSidebar={closedSidebar} />
           ))}
         </CardContainer>
       </Library>

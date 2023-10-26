@@ -12,3 +12,7 @@ export type {
     Track
 } from './mapPlayList'
 
+export type {
+    AuthResponse
+} from './auth'
+

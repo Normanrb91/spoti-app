@@ -28,7 +28,7 @@ const TrackControl = () => {
     if (currentMusic.track?.preview_url === '') {
       audio.current!.pause()
       audio.current!.currentTime = 0
-      audio.current!.src = 'spotify:track:2takcwOaAZWiXQijPHIx7B'
+      audio.current!.src = ''
       setOpen(true)
       return
     }

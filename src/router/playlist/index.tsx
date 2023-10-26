@@ -37,12 +37,12 @@ export const PlayList = () => {
   return (
     <Container>
       <HeaderContainer $bgColor={color}>
-        <IconBackContainer
-          onClick={() => {
-            navigate('/', { replace: true })
-          }}
-        >
-          <button>
+        <IconBackContainer>
+          <button
+            onClick={() => {
+              navigate('/', { replace: true })
+            }}
+          >
             <BackIcon width={32} height={32} />
           </button>
         </IconBackContainer>

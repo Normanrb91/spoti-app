@@ -3,10 +3,13 @@ import styled from "styled-components"
 
 export const Container= styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    height: 100%;
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        flex-direction: column-reverse;
+    }
 `
 
 export const Wraper= styled.div`
@@ -19,6 +22,10 @@ export const Wraper= styled.div`
     > span {
         font-size: ${({theme}) => theme.fontSizes[12]};
         color: ${({theme}) => theme.colors.textOff};
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+        width: 100%;
     }
 `
 

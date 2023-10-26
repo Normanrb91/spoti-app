@@ -1,5 +1,7 @@
 import { type PropsWithChildren, useState, useEffect } from 'react'
+import axios from 'axios'
 import { login_constants } from '@/libs'
+import { AuthResponse } from '@/interfaces'
 import { AuthContext } from './AuthContext'
 
 export interface AuthState {
@@ -8,22 +10,32 @@ export interface AuthState {
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [authState, setAuthState] = useState<AuthState>({ token: null })
-  const { redirect_uri } = login_constants
+  const { client_id } = login_constants
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token')!)
     setAuthState({ token })
   }, [])
 
-  const signIn = (token: string) => {
-    setAuthState({ token })
-    localStorage.setItem('token', JSON.stringify(token))
+  const signIn = async () => {
+    try {
+      const urlencoded = new URLSearchParams()
+      urlencoded.append('grant_type', 'client_credentials')
+      urlencoded.append('client_id', client_id)
+      urlencoded.append('client_secret', import.meta.env.VITE_CLIENT_SECRET)
+
+      const { data } = await axios.post<AuthResponse>('https://accounts.spotify.com/api/token', urlencoded)
+
+      setAuthState({ token: data.access_token })
+      localStorage.setItem('token', JSON.stringify(data.access_token))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const logout = () => {
     setAuthState({ token: null })
     localStorage.removeItem('token')
-    window.location.href = redirect_uri
   }
 
   return (
