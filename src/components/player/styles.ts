@@ -7,6 +7,7 @@ export const Container = styled.div`
     min-height: 88px;
     max-height: 190px;
     padding: 16px 16px;
+    gap: 16px;
 
 
     @media (max-width: ${({theme}) => theme.breakpoints.sm}) {

@@ -8,7 +8,7 @@ export const Container = styled.div`
     margin-right: 8px;
     color: white;
 
-    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+    @media (max-width: ${({theme}) => theme.breakpoints.xs}) {
         justify-content: center;
     }
 `
@@ -25,10 +25,10 @@ export const Wraper= styled.div`
     }
 
     @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
-        width: 70%;
+        width: 80%;
     }
 
-    @media (max-width: ${({theme}) => theme.breakpoints.sm}) {
+    @media (max-width: ${({theme}) => theme.breakpoints.xs}) {
         width: 100%;
     }
 `
