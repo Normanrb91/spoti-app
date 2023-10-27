@@ -20,7 +20,6 @@ export const convertTimeS = (s: number): string => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
 }
 
-
 export const mapPlaylists = (list: PlayListResponse) :PlayList[] => {
 
     const {items} = list
@@ -40,14 +39,17 @@ export const mapPlaylists = (list: PlayListResponse) :PlayList[] => {
 
 export const mapPlaylistId = (playlist: PlayListIdResponse) :PlayListId => {
 
+    console.log(playlist);
+    
+
     const {images, name, owner, tracks, id} = playlist
 
     const songs = tracks.items.map(item => {
         return {
-            id: item.track.id,
-            name: item.track.name,
+            id: item.track?.id,
+            name: item.track?.name,
             album_image: item.track.album.images[0].url,
-            album_name: item.track.album.name.toString(),
+            album_name: item.track.album?.name.toString() ?? 'No name',
             artist: item.track.artists[0].name?.toString() ?? '',
             duration_ms: item.track.duration_ms,
             preview_url: item.track.preview_url ?? ''

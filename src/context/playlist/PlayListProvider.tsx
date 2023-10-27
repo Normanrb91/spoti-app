@@ -51,7 +51,7 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
       })
     } catch (error) {
       console.log(error)
-      logout()
+      //logout()
     }
   }
 
