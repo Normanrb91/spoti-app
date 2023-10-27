@@ -35,7 +35,6 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
         }
       })
     } catch (error) {
-      console.log(error)
       logout()
     }
   }
@@ -50,8 +49,7 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
         payload: { playlist: playlistMap, loading: false }
       })
     } catch (error) {
-      console.log(error)
-      //logout()
+      logout()
     }
   }
 
