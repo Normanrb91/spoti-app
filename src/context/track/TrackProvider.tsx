@@ -1,10 +1,10 @@
-import { type PropsWithChildren, useReducer, useContext } from 'react'
 import { PlayListIdResponse } from '@/interfaces'
 import { mapPlaylistId, mapTrackList, spotiApi } from '@/libs'
-import { TrackState, trackReducer } from './TrackReducer'
-import { CurrentMusic, TrackContext } from './TrackContext'
+import { type PropsWithChildren, useContext, useReducer } from 'react'
 import { AuthContext } from '../auth'
 import { PlayListContext } from '../playlist'
+import { CurrentMusic, TrackContext } from './TrackContext'
+import { TrackState, trackReducer } from './TrackReducer'
 
 const initialState: TrackState = {
   isPlaying: false,
@@ -75,8 +75,6 @@ export const TrackProvider = ({ children }: PropsWithChildren) => {
   }
 
   const setTrack = async (id: string) => {
-    console.log('aa')
-
     const indexTrack = playlist.playlist?.tracks.findIndex(track => track.id === id)
 
     const currentMusic: CurrentMusic = {

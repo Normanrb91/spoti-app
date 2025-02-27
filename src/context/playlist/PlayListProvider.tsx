@@ -1,9 +1,9 @@
-import { type PropsWithChildren, useReducer, useContext } from 'react'
-import { FeaturedResponse, PlayListIdResponse, PlayListResponse } from '@/interfaces'
+import { PlayListIdResponse, PlayListResponse } from '@/interfaces'
 import { login_constants, mapPlaylistId, mapPlaylists, spotiApi } from '@/libs'
-import { PlayListState, plaListReducer } from './playListReducer'
-import { PlayListContext } from './PlayListContext'
+import { type PropsWithChildren, useContext, useReducer } from 'react'
 import { AuthContext } from '../auth'
+import { PlayListContext } from './PlayListContext'
+import { PlayListState, plaListReducer } from './playListReducer'
 
 const initialState: PlayListState = {
   myPlaylists: [],
@@ -23,19 +23,22 @@ export const PlayListProvider = ({ children }: PropsWithChildren) => {
   const getPLayLists = async () => {
     try {
       const { data: list } = await spotiApi.get<PlayListResponse>(`v1/users/${id_user}/playlists?limit=6&offset=0`)
-      const { data: featured } = await spotiApi.get<FeaturedResponse>('v1/browse/featured-playlists?limit=10&offset=0')
+      //const { data: featured } = await spotiApi.get<FeaturedResponse>('v1/browse/new-releases?limit=10')
       const listsMap = mapPlaylists(list)
-      const featuredmap = mapPlaylists(featured.playlists)
+      //const featuredmap = mapPlaylists(featured.playlists)
+
 
       dispatch({
         type: 'setPlaylists',
         payload: {
           user: listsMap,
-          featured: featuredmap
+          featured: [],
         }
       })
     } catch (error) {
-      logout()
+      console.log(error);
+      
+     // logout()
     }
   }
 

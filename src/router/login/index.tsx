@@ -1,5 +1,5 @@
-import { useContext } from 'react'
 import { AuthContext } from '@/context'
+import { useContext } from 'react'
 import { Container, LoginButton } from './styles'
 
 export const Login = () => {
@@ -11,8 +11,8 @@ export const Login = () => {
 
   return (
     <Container>
-      <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="logo_spotify" />
-      <LoginButton onClick={handleOnClick}>Connect Spotify</LoginButton>
+      <img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-4.png" alt="logo_spotify" />
+      <LoginButton onClick={handleOnClick}>Connect</LoginButton>
     </Container>
   )
 }
